@@ -8,7 +8,6 @@ async function fetchTodos() {
     try {
         const response = await fetch(API_URL);
         const data = await response.json();
-        // Backend check karo: single get me `todo` return ho raha hai ya array backend code me json({ todo: allTodos }) likha hai.
         renderTodos(data.todo || data.todos || []);
     } catch (error) {
         console.error("Error fetching todos:", error);
@@ -31,7 +30,7 @@ function renderTodos(todos) {
     });
 }
 
-// 3. Add a new todo
+// 3. Add new todo
 async function addTodo() {
     const title = todoInput.value.trim();
     if (!title) return alert("Kuch likho to sahi!");
@@ -45,14 +44,14 @@ async function addTodo() {
         
         if (response.ok) {
             todoInput.value = "";
-            fetchTodos(); // UI update karne k liye
+            fetchTodos(); 
         }
     } catch (error) {
         console.error("Error adding todo:", error);
     }
 }
 
-// 4. Delete a todo
+// 4. Delete  todo
 async function deleteTodo(id) {
     try {
         const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
@@ -62,7 +61,7 @@ async function deleteTodo(id) {
     }
 }
 
-// 5. Edit a todo
+// 5. Edit  todo
 async function editTodo(id, currentTitle) {
     const newTitle = prompt("Edit your todo:", currentTitle);
     if (!newTitle || newTitle.trim() === "") return;

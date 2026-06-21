@@ -9,7 +9,7 @@ app.use(express.json());
 
 const allTodos = [];
 
-// create a new todo
+// create new todo
 app.post("/todo", (req, res) => {
   const { title } = req.body;
   allTodos.push({

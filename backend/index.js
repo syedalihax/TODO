@@ -21,6 +21,7 @@ app.post("/todo", (req, res) => {
     message: "New todo created",
     todos: allTodos,
   });
+  console.log('TODO Created')
 });
 
 // get all todo
@@ -29,6 +30,7 @@ app.get("/todo", (req, res) => {
   res.status(200).json({
     todo: allTodos,
   });
+  console.log('TODO Refreshed')
 });
 
 // get single todo
@@ -37,13 +39,13 @@ app.get("/todo/:id", (req, res) => {
   const { id } = req.params;
   const index = allTodos.findIndex((item) => item.id === +id);
   console.log(index, id);
-
+  
   if (index === -1) {
     return res.status(404).json({
       message: "todo not found",
     });
   }
-
+  
   res.status(200).json({
     todos: allTodos[index],
   });
@@ -54,18 +56,19 @@ app.get("/todo/:id", (req, res) => {
 app.delete("/todo/:id", (req, res) => {
   const { id } = req.params;
   const index = allTodos.findIndex((item) => item.id === +id);
-
+  
   if (index === -1) {
     return res.status(404).json({
       message: "todo not found",
     });
   }
-
+  
   allTodos.splice(index, 1);
   res.status(200).json({
     message: "todo deleted",
     todos: allTodos,
   });
+  console.log('TODO Deleted')
 });
 
 // edit todo
@@ -86,7 +89,7 @@ app.put("/todo/:id", (req, res) => {
     message: "todo edited successfully",
     todos: allTodos,
   })
-
+  console.log("TODO Edited")
   
 });
 
